@@ -59,19 +59,21 @@ a {
 .row {
   /* border: 1px solid blue; */
   margin: 0 -16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 .row:after {
   content: "";
   display: block;
   clear: both;
 }
-.col-lg-3,.col-lg-4,.col-lg-6,.col-lg-12,.col-lg-2,
+.col-lg-3,.col-lg-4,.col-lg-6,.col-lg-12,.col-pop-prod,
 .col-md-3,.col-md-4,.col-md-6,.col-md-12,
 .col-sm-3,.col-sm-4,.col-sm-6,.col-sm-12{
-  float: left;
+  /* float: left; */
   padding-left: 16px;
   padding-right: 16px;
-  border-radius: 5px;
 }
 .col-lg-3 {
   width: 25%;
@@ -85,7 +87,7 @@ a {
 .col-lg-12 {
   width: 100%;
 }
-.col-lg-2{
+.col-pop-prod{
   width: 20%;
 }
 @media screen and (max-width: 768px){
@@ -116,6 +118,36 @@ a {
       width: 100%;
   }
 }
+@media screen and (max-width: 900px){
+  .col-pop-prod{
+    width: 25%;
+  }
+  .popular .col-pop-prod:nth-last-child(2){
+    display: none;
+  }
+  @media screen and (max-width: 768px){
+    .col-pop-prod{
+      width: 33.333333%;
+    }
+    .popular .col-pop-prod:nth-last-child(3){
+      display: none;
+    }
+    @media screen and (max-width: 540px){
+      .col-pop-prod{
+        width: 50%;
+      }
+      .feedback .feedback-content .col-lg-4{
+        width: 50%;
+      }
+      .feedback .feedback-content .col-lg-4:nth-last-child(2){
+        display: none;
+      }
+      .popular .col-pop-prod:nth-last-child(4){
+        display: none;
+      }
+    }
+  }
+}
 /* ----------------------------------- *\
     Component
 \* ----------------------------------- */
@@ -123,8 +155,12 @@ a {
   height: 20px;
   padding: 20px;
 }
-.navbar .nav-top .nav-top-ul {
+.navbar .nav-top .nav-top-user {
+  display: inline-block;
   float: right;
+}
+.navbar .nav-top .nav-top-listlink {
+  display: inline-block;
 }
 .navbar .nav-top .nav-top-listitem {
   height: 20px;
@@ -203,9 +239,10 @@ a {
 }
 .navbar .nav-mid .brand {
   display: inline-block;
-  /* justify-content: center; */
   vertical-align: top;
-  /* border: 1px solid #000; */
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%,0);
   width: 300px;
   height: 64px;
   background-image: url("../Logo/logolong.png");
@@ -454,6 +491,7 @@ a {
   padding: 16px;
 }
 .block-primary .prod-item{
+  border-radius: 5px;
   margin-bottom: 10px;
 }
 .image-container {
@@ -486,16 +524,16 @@ a {
 .feedback .block-title {
   text-align: left;
 }
-.feedback .container {
-  margin-right: 0px;
-  padding-right: 0;
-}
-.feedback .row{
-  margin: 0;
-}
 .feedback-content {
   border: 1px solid #333;
-  padding: 16px 0px 16px 16px;
+  padding: 16px 0;
+  overflow: hidden;
+}
+@media screen and (max-width:768px){
+  .feedback .prod-item {
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
 }
 .popular .block-title {
   text-align: left;
@@ -515,10 +553,13 @@ a {
 .arrow-right {
   width: 25px;
   position: absolute;
-  /* left: 50%; */
+  right: -3%;
   top: 50%;
   transform: translate(0, -50%);
   cursor: pointer;
+}
+.footer-container{
+  width: 100%;
 }
 .footer-logo {
   width: 40%;
@@ -529,7 +570,7 @@ a {
   left: 50%;
   transform: translate(-50%);
 }
-@media screen and (max-width:768px){
+@media screen and (max-width:900px){
   .footer-img-logo{
     width: 70%;
   }
@@ -557,23 +598,25 @@ a {
   .footer-link {
     font-size: 12px;
   }
-  .footer-menu {
-    transform: translate(0,15%);
-  }
 }
 /* product_list */
-.left-side {
+.prod-menu {
   display: inline-block;
   width: 30%;
   min-width: 220px;
   /* border: 1px solid #765827; */
 }
 @media screen and (max-width:704px) {
-  .left-side {
+  .prod-menu {
     display: none;
   }
 }
-.right-side {
+.prod-block{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+.prod-list {
   display: inline-block;
   vertical-align: top;
   width: 69%;
@@ -628,17 +671,17 @@ a {
   margin-bottom: 16px;
   border: none;
 }
-.right-side .titlebar {
+.prod-list .titlebar {
   margin-bottom: 30px;
 }
-.right-side .block-title {
+.prod-list .block-title {
   float: left;
   margin-top: -30px;
 }
-.right-side .dropdown {
+.prod-list .dropdown {
   top: 50%;
 }
-.right-side .block-product {
+.prod-list .block-product {
   width: 100%;
   float: left;
 }
